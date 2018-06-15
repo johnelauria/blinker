@@ -20,6 +20,8 @@ class Runner  : Asset, Touchable {
     private var animationTime = 0f
     private var runnerX = 0f
     private var runnerY = 0f
+    private var teleporting = false
+    private var teleportTimer = 10
 
     init {
         runnerAnimation = Animation(0.1f, runnerAtlas.regions)
@@ -33,13 +35,19 @@ class Runner  : Asset, Touchable {
         animationTime += Gdx.graphics.deltaTime * 1.5f
         val runnerRegion = runnerAnimation.getKeyFrame(animationTime, true)
 
-        batch.draw(runnerRegion, runnerX, runnerY, runnerWidth(runnerRegion), runnerHeight())
-        fallByGravity()
+        if (teleporting) {
+            teleportTime()
+        } else {
+            batch.draw(runnerRegion, runnerX, runnerY, runnerWidth(runnerRegion), runnerHeight())
+            fallByGravity()
+        }
     }
 
     override fun touchDown(screenX: Float, screenY: Float) {
         if (screenX > Gdx.graphics.width / 1.5f) {
+            runnerX = teleport.teleportX
             runnerY = teleport.teleportY
+            teleporting = true
         }
     }
 
@@ -51,11 +59,28 @@ class Runner  : Asset, Touchable {
         return Gdx.graphics.height / 5f
     }
 
+    private fun teleportTime() {
+        teleportTimer -= 1
+
+        if (teleportTimer <= 0) {
+            teleporting = false
+            teleportTimer = 10
+        }
+    }
+
     private fun fallByGravity() {
-        if (runnerY > 0) {
-            runnerY -= Gdx.graphics.height / 200f
-        } else {
-            runnerY = 0f
+        if (!teleporting) {
+            if (runnerY > 0) {
+                runnerY -= Gdx.graphics.height / 75f
+            } else {
+                runnerY = 0f
+            }
+
+            if (runnerX > 0) {
+                runnerX -= Gdx.graphics.width / 300f
+            } else {
+                runnerX = 0f
+            }
         }
     }
 }
