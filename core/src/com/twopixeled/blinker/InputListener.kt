@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
 import com.twopixeled.blinker.assets.assetTypes.Draggable
+import com.twopixeled.blinker.assets.assetTypes.Touchable
 
 /**
  * Listens for all inputs on how the user interacts with the game, then passes these information
@@ -11,6 +12,7 @@ import com.twopixeled.blinker.assets.assetTypes.Draggable
  */
 class InputListener : InputProcessor {
     var draggables = listOf<Draggable>()
+    var touchables = listOf<Touchable>()
 
     init {
         val im = InputMultiplexer()
@@ -40,8 +42,8 @@ class InputListener : InputProcessor {
     }
 
     override fun touchDragged(screenX: Int, screenY: Int, pointer: Int): Boolean {
-        draggables.forEach {
-            draggables : Draggable -> draggables.moveOrDrag(screenX.toFloat(), normalisedY(screenY))
+        draggables.forEach { draggables : Draggable ->
+            draggables.moveOrDrag(screenX.toFloat(), normalisedY(screenY))
         }
         return false
     }
@@ -51,8 +53,12 @@ class InputListener : InputProcessor {
     }
 
     override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
-        draggables.forEach {
-            draggables : Draggable -> draggables.moveOrDrag(screenX.toFloat(), normalisedY(screenY))
+        draggables.forEach { draggable : Draggable ->
+            draggable.moveOrDrag(screenX.toFloat(), normalisedY(screenY))
+        }
+
+        touchables.forEach { touchable : Touchable ->
+            touchable.touchDown(screenX.toFloat(), normalisedY(screenY))
         }
         return false
     }

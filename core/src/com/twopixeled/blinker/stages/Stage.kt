@@ -3,6 +3,7 @@ package com.twopixeled.blinker.stages
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.twopixeled.blinker.assets.assetTypes.Asset
 import com.twopixeled.blinker.assets.assetTypes.Draggable
+import com.twopixeled.blinker.assets.assetTypes.Touchable
 
 /**
  * Placeholder to group all assets and have them displayed together. E.g. main menu stage will
@@ -13,7 +14,7 @@ abstract class Stage {
      * List of all assets for this stage. Mind the order of assets. Assets on latter indices
      * will show above the assets on lower indices
      */
-    protected abstract val assets: List<Asset>
+    protected var assets = mutableListOf<Asset>()
 
     /**
      * Draws all the assets for this stage
@@ -34,5 +35,9 @@ abstract class Stage {
      */
     fun getDraggables(): List<Draggable> {
         return assets.filterIsInstance(Draggable::class.java)
+    }
+
+    fun getTouchables(): List<Touchable> {
+        return assets.filterIsInstance(Touchable::class.java)
     }
 }

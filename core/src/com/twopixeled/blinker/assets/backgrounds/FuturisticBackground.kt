@@ -48,6 +48,5 @@ class FuturisticBackground : Asset {
         if (bgSprite2.x + bgSprite2.width <= 0) {
             bgSprite2.setPosition(bgSprite.x + bgSprite.width, 0f)
         }
-//        batch.draw(background, 0f, 0f, bgAnimation, 0, Gdx.graphics.width, Gdx.graphics.height)
     }
 }

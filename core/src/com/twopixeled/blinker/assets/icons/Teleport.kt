@@ -13,6 +13,10 @@ import com.twopixeled.blinker.assets.assetTypes.Draggable
 class Teleport : Asset, Draggable {
     private var teleportTexture = Texture(Gdx.files.internal("icons/teleport.png"))
     private var teleportSprite = Sprite(teleportTexture)
+    var teleportX = 0f
+        get() = teleportSprite.x
+    var teleportY = 0f
+        get() = teleportSprite.y
 
     init {
         teleportSprite.setSize(Gdx.graphics.width / 8.5f, Gdx.graphics.height / 4f)

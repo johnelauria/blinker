@@ -17,6 +17,7 @@ class BlinkerGame : ApplicationAdapter() {
         batch = SpriteBatch()
         stage = MainGame()
         inputListener.draggables = stage.getDraggables()
+        inputListener.touchables = stage.getTouchables()
     }
 
     override fun render() {
