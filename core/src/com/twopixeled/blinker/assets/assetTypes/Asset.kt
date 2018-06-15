@@ -1,4 +1,4 @@
-package com.twopixeled.blinker.assets
+package com.twopixeled.blinker.assets.assetTypes
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 

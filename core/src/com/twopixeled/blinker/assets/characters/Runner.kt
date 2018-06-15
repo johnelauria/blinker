@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
-import com.twopixeled.blinker.assets.Asset
+import com.twopixeled.blinker.assets.assetTypes.Asset
 
-class Runner  : Asset{
+/**
+ * The main character of the game. Will keep on running and teleport when player taps on the screen
+ */
+class Runner  : Asset {
     private var runnerAnimation: Animation<TextureRegion>
     private var runnerAtlas: TextureAtlas = TextureAtlas(Gdx.files.internal("runner/runner.atlas"))
 

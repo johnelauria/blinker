@@ -4,9 +4,13 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.twopixeled.blinker.assets.Asset
+import com.twopixeled.blinker.assets.assetTypes.Asset
+import com.twopixeled.blinker.assets.assetTypes.Draggable
 
-class Teleport : Asset {
+/**
+ * Teleport icon to determine where the runner will teleport to
+ */
+class Teleport : Asset, Draggable {
     private var teleportTexture = Texture(Gdx.files.internal("icons/teleport.png"))
     private var teleportSprite = Sprite(teleportTexture)
 
@@ -23,7 +27,7 @@ class Teleport : Asset {
         teleportTexture.dispose()
     }
 
-    fun moveOrDrag(xPos: Float, yPos: Float) {
+    override fun moveOrDrag(xPos: Float, yPos: Float) {
         if (xPos < Gdx.graphics.width / 3) {
             teleportSprite.y = yPos - (teleportSprite.height / 3)
         }

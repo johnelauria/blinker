@@ -4,8 +4,12 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.twopixeled.blinker.assets.Asset
+import com.twopixeled.blinker.assets.assetTypes.Asset
 
+/**
+ * Background that keeps on looping from behind. This is to give an illusion that the character
+ * is running
+ */
 class FuturisticBackground : Asset {
     private var background = Texture(Gdx.files.internal("backgrounds/futuristic_background.jpg"))
     private var bgAnimation = 0f
