@@ -34,19 +34,19 @@ class FuturisticBackground : Asset {
     }
 
     override fun draw(batch: SpriteBatch) {
-        bgAnimation = Gdx.graphics.deltaTime * 100
+        bgAnimation = Gdx.graphics.deltaTime * 700
         bgSprite.draw(batch)
         bgSprite2.draw(batch)
 
         bgSprite.setPosition(bgSprite.x - bgAnimation, 0f)
         bgSprite2.setPosition(bgSprite2.x - bgAnimation, 0f)
 
-        if (bgSprite.x <= bgSprite.width * -bgWidthMultiplier) {
-            bgSprite.setPosition(Gdx.graphics.width * bgWidthMultiplier, 0f)
+        if (bgSprite.x + bgSprite.width <= 0) {
+            bgSprite.setPosition(bgSprite2.x + bgSprite2.width, 0f)
         }
 
-        if (bgSprite2.x <= bgSprite2.width * -bgWidthMultiplier) {
-            bgSprite2.setPosition(Gdx.graphics.width * bgWidthMultiplier, 0f)
+        if (bgSprite2.x + bgSprite2.width <= 0) {
+            bgSprite2.setPosition(bgSprite.x + bgSprite.width, 0f)
         }
 //        batch.draw(background, 0f, 0f, bgAnimation, 0, Gdx.graphics.width, Gdx.graphics.height)
     }
