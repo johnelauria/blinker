@@ -20,7 +20,7 @@ class Teleport : Asset, Draggable {
 
     init {
         teleportSprite.setSize(Gdx.graphics.width / 8.5f, Gdx.graphics.height / 4f)
-        teleportSprite.setPosition(Gdx.graphics.width / 6f, Gdx.graphics.height / 2f)
+        teleportSprite.setPosition(Gdx.graphics.width / 5f, Gdx.graphics.height / 2f)
     }
 
     override fun draw(batch: SpriteBatch) {
@@ -33,7 +33,7 @@ class Teleport : Asset, Draggable {
 
     override fun moveOrDrag(xPos: Float, yPos: Float) {
         if (xPos < Gdx.graphics.width / 3) {
-            teleportSprite.y = yPos - (teleportSprite.height / 3)
+            teleportSprite.y = yPos - (teleportSprite.height / 2)
         }
     }
 }

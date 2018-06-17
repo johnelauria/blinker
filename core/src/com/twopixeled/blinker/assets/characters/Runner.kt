@@ -18,10 +18,10 @@ class Runner  : Asset, Touchable {
     private var runnerAnimation: Animation<TextureRegion>
     private var runnerAtlas: TextureAtlas = TextureAtlas(Gdx.files.internal("runner/runner.atlas"))
     private var animationTime = 0f
-    private var runnerX = 0f
+    private var runnerX = Gdx.graphics.width / 12f
     private var runnerY = 0f
     private var teleporting = false
-    private var teleportTimer = 10
+    private var teleportTimer = 15
 
     init {
         runnerAnimation = Animation(0.1f, runnerAtlas.regions)
@@ -64,22 +64,22 @@ class Runner  : Asset, Touchable {
 
         if (teleportTimer <= 0) {
             teleporting = false
-            teleportTimer = 10
+            teleportTimer = 15
         }
     }
 
     private fun fallByGravity() {
         if (!teleporting) {
             if (runnerY > 0) {
-                runnerY -= Gdx.graphics.height / 75f
+                runnerY -= Gdx.graphics.height / 65f
             } else {
                 runnerY = 0f
             }
 
-            if (runnerX > 0) {
-                runnerX -= Gdx.graphics.width / 300f
+            if (runnerX > Gdx.graphics.width / 12) {
+                runnerX -= Gdx.graphics.width / 600f
             } else {
-                runnerX = 0f
+                runnerX = Gdx.graphics.width / 12f
             }
         }
     }
